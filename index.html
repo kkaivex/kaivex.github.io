@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Kaivex — Digital Services</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --purple: #7c3aed;
+      --purple-light: #a78bfa;
+      --black: #0a0a0a;
+      --gray: #888;
+      --border: #ebebeb;
+      --bg: #fafafa;
+    }
+
+    body {
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      background: white;
+      color: var(--black);
+      overflow-x: hidden;
+    }
+
+    /* ── MARQUEE ── */
+    .marquee-wrapper {
+      position: fixed;
+      top: 65px;
+      left: 0; right: 0;
+      z-index: 99;
+      background: var(--purple);
+      overflow: hidden;
+      padding: 8px 0;
+    }
+
+    .marquee-track {
+      display: flex;
+      gap: 24px;
+      white-space: nowrap;
+      animation: marquee 20s linear infinite;
+    }
+
+    .marquee-track span {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: white;
+      flex-shrink: 0;
+    }
+
+    .marquee-track .dot {
+      color: rgba(255,255,255,0.4);
+      letter-spacing: 0;
+    }
+
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 20px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+
+    .nav-logo span { color: var(--purple); }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--gray);
+      text-decoration: none;
+      letter-spacing: 0.3px;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--black); }
+
+    .nav-cta {
+      background: var(--black);
+      color: white !important;
+      padding: 9px 18px;
+      border-radius: 8px;
+      transition: background 0.2s !important;
+    }
+
+    .nav-cta:hover { background: var(--purple) !important; color: white !important; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 160px 48px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .hero-circle-1 {
+      position: absolute;
+      width: 700px; height: 700px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(124,58,237,0.08) 0%, transparent 70%);
+      top: -200px; right: -200px;
+    }
+
+    .hero-circle-2 {
+      position: absolute;
+      width: 500px; height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(124,58,237,0.05) 0%, transparent 70%);
+      bottom: -150px; left: -150px;
+    }
+
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(107,79,187,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(107,79,187,0.04) 1px, transparent 1px);
+      background-size: 48px 48px;
+    }
+
+    .hero-content {
+      max-width: 720px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(124,58,237,0.08);
+      border: 1px solid rgba(124,58,237,0.2);
+      color: var(--purple);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 20px;
+      margin-bottom: 24px;
+    }
+
+    .badge-dot {
+      width: 6px; height: 6px;
+      background: var(--purple);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    .hero h1 {
+      font-size: 72px;
+      font-weight: 800;
+      letter-spacing: -3px;
+      line-height: 1;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 span { color: var(--purple); }
+
+    .hero p {
+      font-size: 20px;
+      color: var(--gray);
+      line-height: 1.6;
+      max-width: 520px;
+      margin-bottom: 40px;
+      font-weight: 400;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 12px;
+    }
+
+    .btn {
+      padding: 14px 28px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+      border: none;
+      text-decoration: none;
+      display: inline-block;
+      transition: all 0.2s;
+    }
+
+    .btn-primary {
+      background: var(--black);
+      color: white;
+    }
+
+    .btn-primary:hover { background: var(--purple); }
+
+    .btn-secondary {
+      background: white;
+      color: var(--black);
+      border: 1.5px solid var(--border);
+    }
+
+    .btn-secondary:hover { border-color: var(--purple); color: var(--purple); }
+
+    /* ── SERVICES ── */
+    .section {
+      padding: 100px 48px;
+    }
+
+    .section-tag {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--purple);
+      margin-bottom: 12px;
+    }
+
+    .section h2 {
+      font-size: 48px;
+      font-weight: 800;
+      letter-spacing: -2px;
+      line-height: 1.05;
+      margin-bottom: 16px;
+    }
+
+    .section-sub {
+      font-size: 17px;
+      color: var(--gray);
+      max-width: 480px;
+      line-height: 1.6;
+      margin-bottom: 56px;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .service-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px;
+      transition: all 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card:hover {
+      border-color: rgba(124,58,237,0.3);
+      box-shadow: 0 8px 32px rgba(124,58,237,0.08);
+      transform: translateY(-2px);
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--purple), var(--purple-light));
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .service-card:hover::before { opacity: 1; }
+
+    .service-icon {
+      font-size: 32px;
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    .service-card h3 {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      margin-bottom: 10px;
+    }
+
+    .service-card p {
+      font-size: 14px;
+      color: var(--gray);
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .service-price {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--purple);
+      letter-spacing: 0.3px;
+    }
+
+    /* ── PORTFOLIO ── */
+    .portfolio-section {
+      background: var(--bg);
+      padding: 100px 48px;
+    }
+
+    .portfolio-grid {
+      display: grid;
+     grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .portfolio-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: all 0.2s;
+    }
+
+    .portfolio-card:hover {
+      box-shadow: 0 8px 32px rgba(124,58,237,0.08);
+      transform: translateY(-2px);
+    }
+
+    .portfolio-preview {
+      height: 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .preview-meeting { background: linear-gradient(135deg, #f0ebff, #e8d5ff); }
+    .preview-goals { background: linear-gradient(135deg, #ebf5ff, #d5e8ff); }
+    .preview-dashboard { background: linear-gradient(135deg, #ebfff0, #d5ffe8); }
+
+    .portfolio-info {
+      padding: 20px 24px;
+      border-top: 1px solid var(--border);
+    }
+
+    .portfolio-tag {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--purple);
+      margin-bottom: 6px;
+    }
+
+    .portfolio-info h3 {
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      margin-bottom: 6px;
+    }
+
+    .portfolio-info p {
+      font-size: 13px;
+      color: var(--gray);
+      line-height: 1.5;
+    }
+
+    /* ── CTA ── */
+    .cta-section {
+      padding: 100px 48px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      width: 600px; height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(124,58,237,0.06) 0%, transparent 70%);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+
+    .cta-section h2 {
+      font-size: 56px;
+      font-weight: 800;
+      letter-spacing: -2.5px;
+      line-height: 1.05;
+      margin-bottom: 20px;
+      position: relative;
+    }
+
+    .cta-section h2 span { color: var(--purple); }
+
+    .cta-section p {
+      font-size: 18px;
+      color: var(--gray);
+      margin-bottom: 40px;
+      position: relative;
+    }
+
+    .cta-email {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--black);
+      color: white;
+      padding: 16px 32px;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: background 0.2s;
+      position: relative;
+    }
+
+    .cta-email:hover { background: var(--purple); }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-logo {
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: -0.3px;
+    }
+
+    .footer-logo span { color: var(--purple); }
+
+    footer p {
+      font-size: 13px;
+      color: #bbb;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">kaivex<span>.</span></div>
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#contact" class="nav-cta">Get in Touch</a></li>
+    </ul>
+  </nav>
+
+  <!-- MARQUEE -->
+  <div class="marquee-wrapper">
+    <div class="marquee-track">
+      <span>WEBSITES</span><span class="dot">·</span>
+      <span>AIRBNB TOURS</span><span class="dot">·</span>
+      <span>DIGITAL TOOLS</span><span class="dot">·</span>
+      <span>BANFF</span><span class="dot">·</span>
+      <span>CANMORE</span><span class="dot">·</span>
+      <span>CALGARY</span><span class="dot">·</span>
+      <span>KAIVEX</span><span class="dot">·</span>
+      <span>WEBSITES</span><span class="dot">·</span>
+      <span>AIRBNB TOURS</span><span class="dot">·</span>
+      <span>DIGITAL TOOLS</span><span class="dot">·</span>
+      <span>BANFF</span><span class="dot">·</span>
+      <span>CANMORE</span><span class="dot">·</span>
+      <span>CALGARY</span><span class="dot">·</span>
+      <span>KAIVEX</span><span class="dot">·</span>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg">
+      <div class="hero-grid"></div>
+      <div class="hero-circle-1"></div>
+      <div class="hero-circle-2"></div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-badge"><span class="badge-dot"></span> Available for new clients</div>
+      <h1>The digital edge your competitors<br><span>don't have.</span></h1>
+      <p>Built for businesses that don't settle. Clean websites, Airbnb video tours, and custom digital tools — delivered fast.</p>
+      <div class="hero-btns">
+        <a href="#contact" class="btn btn-primary">Work With Me →</a>
+        <a href="#work" class="btn btn-secondary">See My Work</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="section" id="services">
+    <div class="section-tag">What I Do</div>
+    <h2>Services that<br>move the needle.</h2>
+    <p class="section-sub">Three focused offerings. No fluff. Just results that make your business look and perform better.</p>
+
+    <div class="services-grid">
+      <div class="service-card">
+        <span class="service-icon">🏠</span>
+        <h3>Airbnb Video Tours</h3>
+        <p>AI-generated walkthrough videos from your listing photos. More bookings, less effort. Delivered in 48 hours.</p>
+        <div class="service-price">Starting at $75 per property</div>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">🌐</span>
+        <h3>Business Websites</h3>
+        <p>Clean, fast, premium websites that make your business look established. No templates, no cheap themes.</p>
+        <div class="service-price">Starting at $300 per site</div>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">⚡</span>
+        <h3>Custom Digital Tools</h3>
+        <p>Dashboards, trackers, booking tools — built specifically for your business workflow. Whatever you need.</p>
+        <div class="service-price">Starting at $150 per tool</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PORTFOLIO -->
+  <section class="portfolio-section" id="work">
+    <div style="max-width:960px;margin:0 auto;">
+      <div cla<div class="section-tag">Portfolio</div>
+      <h2 style="font-size:48px;font-weight:800;letter-spacing:-2px;margin-bottom:16px;">Work that<br>speaks for itself.</h2>
+      <p class="section-sub">Real tools built from scratch. Clean code, premium design, actual functionality.</p>
+
+      <div class="portfolio-grid">
+        <div class="portfolio-card">
+          <div class="portfolio-preview preview-meeting">📅</div>
+          <div class="portfolio-info">
+            <div class="portfolio-tag">Scheduling Tool</div>
+            <h3>Meeting Finder</h3>
+            <p>Click-to-select availability finder for groups. Instant overlap detection, zero typos.</p>
+          </div>
+        </div>
+        <div class="portfolio-card">
+          <div class="portfolio-preview preview-goals">🎯</div>
+          <div class="portfolio-info">
+            <div class="portfolio-tag">Productivity Tool</div>
+            <h3>Goal Tracker</h3>
+            <p>Personal goal dashboard with progress bars, categories, and auto-save. Built in a day.</p>
+          </div>
+        </div>
+        <div class="portfolio-card">
+          <div class="portfolio-preview preview-dashboard">⚡</div>
+          <div class="portfolio-info">
+            <div class="portfolio-tag">Live Dashboard</div>
+            <h3>Personal Dashboard</h3>
+            <p>Real-time weather, exchange rates, NHL and world news — all in one premium interface.</p>
+          </div>
+        </div>
+        <div class="portfolio-card">
+          <div class="portfolio-preview" style="background:linear-gradient(135deg,#1a1a1a,#2a2a2a);">✂️</div>
+          <div class="portfolio-info">
+            <div class="portfolio-tag">Business Website</div>
+            <h3>Blade & Co. Barbershop</h3>
+            <p>Premium barbershop website with services, pricing, hours, and reviews. Built for a Banff local business.</p>
+          </div>
+        </div>
+        <div class="portfolio-card">
+          <div class="portfolio-preview" style="background:linear-gradient(135deg,#c8d8c0,#8aab8a);">📷</div>
+          <div class="portfolio-info">
+            <div class="portfolio-tag">Business Website</div>
+            <h3>Mountain Photography Studio</h3>
+            <p>Bright, airy photography portfolio with gallery, service packages, and booking. Built for Banff & Canmore photographers.</p>
+          </div>
+        </div>
+        <div class="portfolio-card">
+          <div class="portfolio-preview" style="background:linear-gradient(135deg,#e0f0ff,#b0d4f0);">📊</div>
+          <div class="portfolio-info">
+            <div class="portfolio-tag">Interactive Tool</div>
+            <h3>Banff & Canmore STR ROI Calculator</h3>
+            <p>Short-term rental calculator with real local data and a branded PDF report download.</p>
+          </div>
+        </div>
+      </div>
+  <section class="cta-section" id="contact">
+    <h2>Ready to look<br><span>impossible to ignore?</span></h2>
+    <p>Let's talk about what your business needs. No commitment, no pressure.</p>
+    <a href="mailto:kairauhaus1@gmail.com" class="cta-email">✉️ Get in Touch</a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+   <div class="footer-logo">kaivex<span>.</span></div>
+    <p>© 2026 Kaivex. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
