@@ -60,6 +60,19 @@
       100% { transform: translateX(-50%); }
     }
 
+  /* ── TOP BAR ── */
+    .top-bar {
+      height: 3px;
+      background: linear-gradient(90deg, #7c3aed, #a78bfa, #7c3aed);
+      background-size: 200% 100%;
+      animation: shimmer 3s linear infinite;
+    }
+
+    @keyframes shimmer {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+
     /* ── NAV ── */
     nav {
       position: fixed;
@@ -484,6 +497,8 @@
 
   
   
+ <div class="top-bar"></div>
+
   <!-- HERO -->
   <section class="hero">
     <div class="hero-bg">
