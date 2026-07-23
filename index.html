@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <title>Kaivex — Digital Services</title>
+  <title>Kaivex — Digital Services</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -23,50 +23,7 @@
       overflow-x: hidden;
     }
 
-    /* ── MARQUEE ── */
-    .marquee-wrapper {
-      position: fixed;
-      top: 65px;
-      left: 0; right: 0;
-      z-index: 99;
-      background: var(--purple);
-      overflow: hidden;
-      padding: 8px 0;
-    }
-
-    .marquee-track {
-      display: flex;
-      gap: 24px;
-      white-space: nowrap;
-      animation: marquee 20s linear infinite;
-    }
-
-    .marquee-track span {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: white;
-      flex-shrink: 0;
-    }
-
-    .marquee-track .dot {
-      color: rgba(255,255,255,0.4);
-      letter-spacing: 0;
-    }
-
-    @keyframes marquee {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-
- /* ── TOP BAR ── */
-    .top-bar {
-      display: none;
-    }
-
-    /* ── NAV ── */
-   nav {
+    nav {
       position: fixed;
       top: 0; left: 0; right: 0;
       z-index: 100;
@@ -81,9 +38,10 @@
     }
 
     .nav-logo {
-      font-size: 18px;
+      font-size: 20px;
       font-weight: 800;
       letter-spacing: -0.5px;
+      color: var(--black);
     }
 
     .nav-logo span { color: var(--purple); }
@@ -99,23 +57,21 @@
       font-weight: 600;
       color: var(--gray);
       text-decoration: none;
-      letter-spacing: 0.3px;
       transition: color 0.2s;
     }
 
     .nav-links a:hover { color: var(--black); }
 
     .nav-cta {
-      background: var(--black);
+      background: var(--black) !important;
       color: white !important;
       padding: 9px 18px;
       border-radius: 8px;
       transition: background 0.2s !important;
     }
 
-    .nav-cta:hover { background: var(--purple) !important; color: white !important; }
+    .nav-cta:hover { background: var(--purple) !important; }
 
-    /* ── HERO ── */
     .hero {
       min-height: 100vh;
       display: flex;
@@ -143,6 +99,7 @@
       position: absolute;
       inset: 0;
       pointer-events: none;
+      z-index: 0;
     }
 
     .hero-circle-1 {
@@ -220,7 +177,6 @@
       line-height: 1.6;
       max-width: 520px;
       margin-bottom: 40px;
-      font-weight: 400;
     }
 
     .hero-btns {
@@ -241,25 +197,12 @@
       transition: all 0.2s;
     }
 
-    .btn-primary {
-      background: var(--black);
-      color: white;
-    }
-
+    .btn-primary { background: var(--black); color: white; }
     .btn-primary:hover { background: var(--purple); }
-
-    .btn-secondary {
-      background: white;
-      color: var(--black);
-      border: 1.5px solid var(--border);
-    }
-
+    .btn-secondary { background: white; color: var(--black); border: 1.5px solid var(--border); }
     .btn-secondary:hover { border-color: var(--purple); color: var(--purple); }
 
-    /* ── SERVICES ── */
-    .section {
-      padding: 100px 48px;
-    }
+    .section { padding: 100px 48px; }
 
     .section-tag {
       font-size: 11px;
@@ -279,7 +222,7 @@
     }
 
     .section-sub {
-      font-size: 17px;
+      font-size: 16px;
       color: var(--gray);
       max-width: 480px;
       line-height: 1.6;
@@ -320,43 +263,18 @@
 
     .service-card:hover::before { opacity: 1; }
 
-    .service-icon {
-      font-size: 32px;
-      margin-bottom: 20px;
-      display: block;
-    }
+    .service-icon { font-size: 32px; margin-bottom: 20px; display: block; }
+    .service-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; }
+    .service-card p { font-size: 14px; color: var(--gray); line-height: 1.6; margin-bottom: 20px; }
+    .service-price { font-size: 13px; font-weight: 700; color: var(--purple); }
 
-    .service-card h3 {
-      font-size: 18px;
-      font-weight: 700;
-      letter-spacing: -0.3px;
-      margin-bottom: 10px;
-    }
-
-    .service-card p {
-      font-size: 14px;
-      color: var(--gray);
-      line-height: 1.6;
-      margin-bottom: 20px;
-    }
-
-    .service-price {
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--purple);
-      letter-spacing: 0.3px;
-    }
-
-    /* ── PORTFOLIO ── */
-    .portfolio-section {
-      background: var(--bg);
-      padding: 100px 48px;
-    }
+    .portfolio-section { background: var(--bg); padding: 100px 48px; }
 
     .portfolio-grid {
       display: grid;
-     grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 16px;
+      margin-bottom: 16px;
     }
 
     .portfolio-card {
@@ -365,6 +283,10 @@
       border-radius: 16px;
       overflow: hidden;
       transition: all 0.2s;
+      cursor: pointer;
+      text-decoration: none;
+      display: block;
+      color: inherit;
     }
 
     .portfolio-card:hover {
@@ -380,40 +302,27 @@
       font-size: 48px;
       position: relative;
       overflow: hidden;
+      background-size: cover;
+      background-position: top;
     }
 
     .preview-meeting { background: linear-gradient(135deg, #f0ebff, #e8d5ff); }
-    .preview-goals { background: linear-gradient(135deg, #ebf5ff, #d5e8ff); }
-    .preview-dashboard { background: linear-gradient(135deg, #ebfff0, #d5ffe8); }
 
-    .portfolio-info {
-      padding: 20px 24px;
-      border-top: 1px solid var(--border);
-    }
+    .portfolio-info { padding: 20px 24px; border-top: 1px solid var(--border); }
+    .portfolio-tag { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--purple); margin-bottom: 6px; }
+    .portfolio-info h3 { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
+    .portfolio-info p { font-size: 13px; color: var(--gray); line-height: 1.5; }
 
-    .portfolio-tag {
-      font-size: 10px;
+    .category-label {
+      font-size: 11px;
       font-weight: 700;
-      letter-spacing: 1.5px;
+      letter-spacing: 2px;
       text-transform: uppercase;
       color: var(--purple);
-      margin-bottom: 6px;
+      margin-bottom: 20px;
+      margin-top: 40px;
     }
 
-    .portfolio-info h3 {
-      font-size: 16px;
-      font-weight: 700;
-      letter-spacing: -0.3px;
-      margin-bottom: 6px;
-    }
-
-    .portfolio-info p {
-      font-size: 13px;
-      color: var(--gray);
-      line-height: 1.5;
-    }
-
-    /* ── CTA ── */
     .cta-section {
       padding: 100px 48px;
       text-align: center;
@@ -432,23 +341,9 @@
       pointer-events: none;
     }
 
-    .cta-section h2 {
-      font-size: 56px;
-      font-weight: 800;
-      letter-spacing: -2.5px;
-      line-height: 1.05;
-      margin-bottom: 20px;
-      position: relative;
-    }
-
+    .cta-section h2 { font-size: 56px; font-weight: 800; letter-spacing: -2.5px; line-height: 1.05; margin-bottom: 20px; position: relative; }
     .cta-section h2 span { color: var(--purple); }
-
-    .cta-section p {
-      font-size: 18px;
-      color: var(--gray);
-      margin-bottom: 40px;
-      position: relative;
-    }
+    .cta-section p { font-size: 18px; color: var(--gray); margin-bottom: 40px; position: relative; }
 
     .cta-email {
       display: inline-flex;
@@ -467,7 +362,6 @@
 
     .cta-email:hover { background: var(--purple); }
 
-    /* ── FOOTER ── */
     footer {
       border-top: 1px solid var(--border);
       padding: 32px 48px;
@@ -476,23 +370,13 @@
       align-items: center;
     }
 
-    .footer-logo {
-      font-size: 15px;
-      font-weight: 800;
-      letter-spacing: -0.3px;
-    }
-
+    .footer-logo { font-size: 15px; font-weight: 800; }
     .footer-logo span { color: var(--purple); }
-
-    footer p {
-      font-size: 13px;
-      color: #bbb;
-    }
+    footer p { font-size: 13px; color: #bbb; }
   </style>
 </head>
 <body>
 
-  <!-- NAV -->
   <nav>
     <div class="nav-logo">kaivex<span>.</span></div>
     <ul class="nav-links">
@@ -502,11 +386,6 @@
     </ul>
   </nav>
 
-  
-  
- <div class="top-bar"></div>
-
-  <!-- HERO -->
   <section class="hero">
     <div class="hero-bg">
       <div class="hero-grid"></div>
@@ -524,12 +403,10 @@
     </div>
   </section>
 
-  <!-- SERVICES -->
   <section class="section" id="services">
     <div class="section-tag">What I Do</div>
-    <h2>Services that<br>move the needle.</h2>
+    <h2 class="section" style="padding:0;background:none;">Services that<br>move the needle.</h2>
     <p class="section-sub">Three focused offerings. No fluff. Just results that make your business look and perform better.</p>
-
     <div class="services-grid">
       <div class="service-card">
         <span class="service-icon">🏠</span>
@@ -541,7 +418,7 @@
         <span class="service-icon">🌐</span>
         <h3>Business Websites</h3>
         <p>Clean, fast, premium websites that make your business look established. No templates, no cheap themes.</p>
-        <div class="service-price">Starting at $300 per site</div>
+        <div class="service-price">Starting at $199 per site</div>
       </div>
       <div class="service-card">
         <span class="service-icon">⚡</span>
@@ -552,72 +429,70 @@
     </div>
   </section>
 
-  <!-- PORTFOLIO -->
   <section class="portfolio-section" id="work">
     <div style="max-width:960px;margin:0 auto;">
-      <div cla<div class="section-tag">Portfolio</div>
+      <div class="section-tag">Portfolio</div>
       <h2 style="font-size:48px;font-weight:800;letter-spacing:-2px;margin-bottom:16px;">Work that<br>speaks for itself.</h2>
-      <p class="section-sub">Real tools built from scratch. Clean code, premium design, actual functionality.</p>
+      <p class="section-sub">Real projects built from scratch. Clean code, premium design, actual functionality.</p>
 
+      <div class="category-label">— Websites</div>
       <div class="portfolio-grid">
+        <div class="portfolio-card">
+          <div class="portfolio-preview"><img src="./blade.png" style="width:100%;height:100%;object-fit:cover;object-position:top;"></div>
+          <div class="portfolio-info">
+            <div class="portfolio-tag">Business Website</div>
+            <h3>Blade & Co. Barbershop</h3>
+            <p>Premium barbershop website with services, pricing, hours, and reviews.</p>
+          </div>
+        </div>
+        <div class="portfolio-card">
+          <div class="portfolio-preview" style="background-image:url('./photography.png');background-size:cover;background-position:top;"></div>
+          <div class="portfolio-info">
+            <div class="portfolio-tag">Business Website</div>
+            <h3>Mountain Photography Studio</h3>
+            <p>Bright, airy photography portfolio with gallery, packages, and booking.</p>
+          </div>
+        </div>
+        <div class="portfolio-card">
+          <div class="portfolio-preview" style="background:#1a1a1a;display:flex;align-items:center;justify-content:center;font-size:18px;color:#555;font-weight:700;letter-spacing:-0.5px;">Coming Soon</div>
+          <div class="portfolio-info">
+            <div class="portfolio-tag">Business Website</div>
+            <h3>Symiotics Salon & Barber</h3>
+            <p>Modern booking-focused website for a Banff salon. Currently in production.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="category-label">— Tools & Apps</div>
+      <div class="portfolio-grid" style="grid-template-columns:repeat(2,1fr);max-width:640px;">
+        <div class="portfolio-card">
+          <div class="portfolio-preview" style="background-image:url('./roi.png');background-size:cover;background-position:top;"></div>
+          <div class="portfolio-info">
+            <div class="portfolio-tag">Interactive Tool</div>
+            <h3>STR ROI Calculator</h3>
+            <p>Short-term rental calculator with real local data and PDF report download.</p>
+          </div>
+        </div>
         <div class="portfolio-card">
           <div class="portfolio-preview preview-meeting">📅</div>
           <div class="portfolio-info">
             <div class="portfolio-tag">Scheduling Tool</div>
             <h3>Meeting Finder</h3>
-            <p>Click-to-select availability finder for groups. Instant overlap detection, zero typos.</p>
-          </div>
-        </div>
-        <div class="portfolio-card">
-          <div class="portfolio-preview preview-goals">🎯</div>
-          <div class="portfolio-info">
-            <div class="portfolio-tag">Productivity Tool</div>
-            <h3>Goal Tracker</h3>
-            <p>Personal goal dashboard with progress bars, categories, and auto-save. Built in a day.</p>
-          </div>
-        </div>
-        <div class="portfolio-card">
-          <div class="portfolio-preview preview-dashboard">⚡</div>
-          <div class="portfolio-info">
-            <div class="portfolio-tag">Live Dashboard</div>
-            <h3>Personal Dashboard</h3>
-            <p>Real-time weather, exchange rates, NHL and world news — all in one premium interface.</p>
-          </div>
-        </div>
-        <div class="portfolio-card">
-          <div class="portfolio-preview" style="background:linear-gradient(135deg,#1a1a1a,#2a2a2a);">✂️</div>
-          <div class="portfolio-info">
-            <div class="portfolio-tag">Business Website</div>
-            <h3>Blade & Co. Barbershop</h3>
-            <p>Premium barbershop website with services, pricing, hours, and reviews. Built for a Banff local business.</p>
-          </div>
-        </div>
-        <div class="portfolio-card">
-          <div class="portfolio-preview" style="background:linear-gradient(135deg,#c8d8c0,#8aab8a);">📷</div>
-          <div class="portfolio-info">
-            <div class="portfolio-tag">Business Website</div>
-            <h3>Mountain Photography Studio</h3>
-            <p>Bright, airy photography portfolio with gallery, service packages, and booking. Built for Banff & Canmore photographers.</p>
-          </div>
-        </div>
-        <div class="portfolio-card">
-          <div class="portfolio-preview" style="background:linear-gradient(135deg,#e0f0ff,#b0d4f0);">📊</div>
-          <div class="portfolio-info">
-            <div class="portfolio-tag">Interactive Tool</div>
-            <h3>Banff & Canmore STR ROI Calculator</h3>
-            <p>Short-term rental calculator with real local data and a branded PDF report download.</p>
+            <p>Click-to-select availability finder for groups. Instant overlap detection.</p>
           </div>
         </div>
       </div>
+    </div>
+  </section>
+
   <section class="cta-section" id="contact">
     <h2>Ready to look<br><span>impossible to ignore?</span></h2>
     <p>Let's talk about what your business needs. No commitment, no pressure.</p>
     <a href="mailto:kairauhaus1@gmail.com" class="cta-email">✉️ Get in Touch</a>
   </section>
 
-  <!-- FOOTER -->
   <footer>
-   <div class="footer-logo">kaivex<span>.</span></div>
+    <div class="footer-logo">kaivex<span>.</span></div>
     <p>© 2026 Kaivex. All rights reserved.</p>
   </footer>
 
