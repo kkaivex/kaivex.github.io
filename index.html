@@ -230,6 +230,22 @@
     .cta-email:hover { background: var(--purple); }
 
     footer { border-top: 1px solid var(--border); padding: 32px 48px; display: flex; justify-content: space-between; align-items: center; }
+
+    @media (max-width: 768px) {
+      nav { padding: 16px 20px; }
+      .nav-links { display: none; }
+      .hero { padding: 120px 20px 60px; }
+      .hero h1 { font-size: 40px; letter-spacing: -1.5px; }
+      .hero p { font-size: 16px; }
+      .section { padding: 60px 20px; }
+      .services-grid { grid-template-columns: 1fr; }
+      .portfolio-section { padding: 60px 20px; }
+      .portfolio-grid { grid-template-columns: 1fr; }
+      .cta-section { padding: 60px 20px; }
+      .cta-section h2 { font-size: 36px; }
+      footer { padding: 24px 20px; flex-direction: column; gap: 12px; text-align: center; }
+      div[style*="display:flex;justify-content:space-between"] { flex-direction: column; text-align: center; }
+    }
     .footer-logo { font-size: 15px; font-weight: 800; }
     .footer-logo span { color: var(--purple); }
     footer p { font-size: 13px; color: #bbb; }
